@@ -16,7 +16,6 @@ function RenderItem(props) {
 				<Text style={{margin: 10}}>
 					{item.description}
 				</Text>
-
 			</Card>
 		);
 	}
