@@ -40,6 +40,7 @@ class Reservation extends Component {
 	render() {
 		return (
 			<ScrollView>
+
 				<View style={styles.formRow}>
 					<Text style={styles.formLabel}>Number of Guests</Text>
 					<Picker style={styles.formItem} selectedValue={this.state.guests} 
@@ -52,12 +53,14 @@ class Reservation extends Component {
 							<Picker.Item label='6' value={6} />
 					</Picker>
 				</View>
+
 				<View style={styles.formRow}>
 					<Text style={styles.formLabel}>Smoking/Non-Smoking?</Text>
 					<Switch style={styles.formItem} value={this.state.smoking} trackColor='#512DA8'
 							onValueChange={(value) => this.setState({ smoking: value })} >
 					</Switch>	
 				</View>
+
 				<View style={styles.formRow}>
 					<Text style={styles.formLabel}>Date and Time</Text>
 					<DatePicker style={{flex:2, marginRight:20}} date={this.state.date} 
@@ -75,6 +78,7 @@ class Reservation extends Component {
 									}
 								}} onDateChange={(date) => {this.setState({ date: date })}} />
 				</View>
+
 				<View style={styles.formRow}>
 					<Button title='Reserve' color='#512DA8' onPress={() => this.handleReservation()}
 							accessibilityLabel='Learn more about this purple button' /> 
@@ -99,6 +103,7 @@ class Reservation extends Component {
 						}} color='#512DA8' title='Close' />
 					</View>
 				</Modal>
+				
 			</ScrollView>
 		);
 	}
