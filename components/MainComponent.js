@@ -101,7 +101,7 @@ const ReservationNavigator = createAppContainer(createStackNavigator({
 		},
 		headerTintColor: '#fff',
 		headerTitleStyle: {
-			color: '#512DA8'
+			color: '#fff'
 		},
 		headerLeft: () => <Icon name='menu' size={24} color='white' onPress={() => navigation.toggleDrawer()} />
 	})
