@@ -26,18 +26,19 @@ class Favorites extends Component {
 	 }
 
 	render() {
+
 	 	const { navigate } = this.props.navigation;
 
 	 	const renderMenuItem = ({ item, index }) => {
 
 	 		const rightButton = [
 		 		{
-		 			text: 'Delete',
+		 			text: 'Remove',
 		 			type: 'delete',
 		 			onPress: () => {
 		 				Alert.alert(
-		 					'Delete Favorite?',
-		 					'Are you sure you wish to delete the favorite dish ' + item.name + ' ?',
+		 					'Remove Favorite?',
+		 					'Are you sure you wish to remove ' + item.name + ' from your favorites list ?',
 		 					[
 		 						{ 
 		 							text: 'Cancel', 
@@ -46,7 +47,7 @@ class Favorites extends Component {
 		 						},
 
 		 						{
-		 							text: 'Okay',
+		 							text: 'Remove',
 		 							onPress: () => this.props.deleteFavorite(item.id)
 		 						}
 		 					],

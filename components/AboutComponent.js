@@ -10,7 +10,7 @@ const mapStateToProps = state => {
 	return {
 		leaders: state.leaders
 	}
-}
+}	
 
 function History () {
 	return (

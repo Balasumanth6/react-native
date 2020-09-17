@@ -32,19 +32,24 @@ function RenderDish(props) {
 			return false;
 	};
 
-	const panResponder = PanResponder.create({
+	const recognizeComment = ({ moveX, moveY, dx, dy }) => {
+		if ( dx > 200 )
+			return true;
+		else
+			return false;
+	};
 
+	const panResponder = PanResponder.create({
 		onStartShouldSetPanResponder: (e, gestureState) => {
 			return true;
 		},
-
 		onPanResponderGrant: () => {
 			this.view.rubberBand(1000)
-				.then(endState => console.log(endState.finished ? 'finished' : 'cancelled '));
+				.then(endState => console.log(endState.finished ? 'finished' : 'cancelled'));
 		},	
-
 		onPanResponderEnd: (e, gestureState) => {
-			if (recognizeDrag(gestureState))
+
+			if (recognizeDrag(gestureState)) 
 				Alert.alert(
 					'Add to Favorites?',
 					'Are you sure you wish to add ' + dish.name + ' to your favorites?',
@@ -55,13 +60,17 @@ function RenderDish(props) {
 							style: 'Cancel'
 						},
 						{
-							text: 'Okay',
+							text: 'Add',
 							onPress:() => props.favorite ? console.log('Already favorite') : props.onPress() 
 						}
 					],
 					{ cancelable: false }
 				);
-				return true;
+
+			else if (recognizeComment(gestureState))
+				props.newComment();
+
+			return true;
 		}
 	});
 
@@ -70,13 +79,11 @@ function RenderDish(props) {
 			<Animatable.View animation='fadeInDown' duration={2000} delay={1000} 
 					ref={this.handleViewRef} {...panResponder.panHandlers}>
 				<Card featuredTitle={dish.name} image={{uri: baseUrl + dish.image}} >
-					<Text style={{margin: 10}}> 
-						{dish.description + '.'}
-					</Text>
-					<View style={styles.icons} >
+					<Text style={{margin: 10}}> {dish.description} </Text>
+					<View style={styles.icons}>
 						<Icon style={{flex: 1}} raised reverse name={ props.favorite ? 'heart' : 'heart-o'} 
 							type='font-awesome' color='#f50' 
-							onPress={() => props.favorite ? console.log('Already favorite') : props.onPress() } />
+							onPress={() => props.favorite ? console.log('Already favorite') : props.onPress()} />
 						<Icon style={{flex: 1}} raised reverse name={'pencil'} 
 							type='font-awesome' color='#512DA8' 
 							onPress={() => props.newComment() } />
@@ -94,7 +101,6 @@ function RenderDish(props) {
 function RenderComments(props) {
 
 	const comments = props.comments
-
 	const RenderCommentItem = ({ item, index }) => {
 		return (
 			<View key={index} style={{margin:10}}>
@@ -104,9 +110,8 @@ function RenderComments(props) {
 			</View>
 		);	
 	}
-
 	return(
-		<Animatable.View animation='fadeInUp' duration={2000} delay={1000}>
+		<Animatable.View animation='fadeInUp' duration={2000} delay={1000} >
 			<Card title='Comments'>
 				<FlatList data={comments} renderItem={RenderCommentItem} keyExtractor={item => item.id.toString()} />
 			</Card>
@@ -118,7 +123,6 @@ class Dishdetail extends Component {
 
 	constructor(props) {
 		super(props);
-
 		this.state = {
 			showModal: false,
 			author: ' ',
@@ -154,7 +158,8 @@ class Dishdetail extends Component {
 
 	render() {
 
-		const dishId = this.props.navigation.getParam('dishId','');
+		// const dishId = this.props.navigation.getParam('dishId','');
+		const dishId = this.props.navigation.getParam('dishId');
 
 		return(
 			<ScrollView>

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, StyleSheet, Picker, Switch, Button, Modal } from 'react-native';
+import { Text, View, ScrollView, StyleSheet, Picker, Switch, Button, Modal, Alert } from 'react-native';
 import { Card } from 'react-native-elements';
 import DatePicker from 'react-native-datepicker';
+import * as Animatable from 'react-native-animatable';
 
 class Reservation extends Component {
 
@@ -21,7 +22,23 @@ class Reservation extends Component {
 	}
 
 	toggleModal() {
-		this.setState({ showModal: !this.state.showModal })
+		// this.setState({ showModal: !this.state.showModal })
+		Alert.alert(
+			'Your Reservation OK?',
+			'Number of guests: ' + this.state.guests + ' \nSmoking? ' + this.state.smoking + ' \nDate: ' + this.state.date,
+			[
+				{
+					text: 'cancel',
+					style: 'cancel',
+					onPress: () => this.resetForm()
+				},
+				{
+					text: 'Ok',
+					onPress: () => this.resetForm()
+				}
+			],
+			{ cancelable: false }
+		);
 	}
 
 	handleReservation() {
@@ -41,6 +58,7 @@ class Reservation extends Component {
 		return (
 			<ScrollView>
 
+				<Animatable.View animation='zoomIn' duration={1500}>
 				<View style={styles.formRow}>
 					<Text style={styles.formLabel}>Number of Guests</Text>
 					<Picker style={styles.formItem} selectedValue={this.state.guests} 
@@ -83,8 +101,9 @@ class Reservation extends Component {
 					<Button title='Reserve' color='#512DA8' onPress={() => this.handleReservation()}
 							accessibilityLabel='Learn more about this purple button' /> 
 				</View>
+				</Animatable.View>
 
-				<Modal animationType={'slide'} transparent={false} visible={this.state.showModal}
+				<Modal animationType={'fade'} transparent={false} visible={this.state.showModal}
 						onDismiss={() => {
 							this.toggleModal();
 							this.resetForm()
@@ -118,7 +137,7 @@ const styles = StyleSheet.create({
 		margin: 20
 	},
 	formLabel: {
-		fontSize: 18,
+		fontSize: 16,
 		flex: 2,
 	},
 	formItem: {

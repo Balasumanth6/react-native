@@ -75,8 +75,8 @@ class Home extends Component {
 			this.animatedValue, 
 			{
 				toValue: 8,
-				duration: 8000,
-				easing: Easing.linear,
+				duration: 16000,
+				easing: Easing.Linear,
 				useNativeDriver: true
 			}
 		).start(() => this.animate())
@@ -86,17 +86,17 @@ class Home extends Component {
 
 		const xpos1 = this.animatedValue.interpolate({
 			inputRange: [0, 1, 3, 5, 8],
-			outputRange: [1200, 600, 0, -600, -1200]
+			outputRange: [1200, 800, 0, -800, -1200]
 		});
 
 		const xpos2 = this.animatedValue.interpolate({
 			inputRange: [0, 2, 4, 6, 8],
-			outputRange: [1200, 600, 0, -600, -1200]
+			outputRange: [1200, 800, 0, -800, -1200]
 		});
 
 		const xpos3 = this.animatedValue.interpolate({
 			inputRange: [0, 3, 5, 7, 8],
-			outputRange: [1200, 600, 0, -600, -1200]
+			outputRange: [1200, 800, 0, -800, -1200]
 		});
 
 		return (

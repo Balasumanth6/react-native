@@ -9,13 +9,13 @@ import { Loading } from './components/LoadingComponent';
 const { persistor, store } = ConfigureStore();
 
 export default class App extends React.Component {
-  render() {
-  	return (
-  		<Provider store={store} >
-  			<PersistGate loading={<Loading />} persistor={persistor} >
-			    <Main />
-			</PersistGate>
-	    </Provider>
-  );
-  }
+  	render() {
+  		return (
+			<Provider store={store} >
+				<PersistGate loading={<Loading />} persistor={persistor} >
+			   		<Main />
+				</PersistGate>
+		    </Provider>
+  		);
+ 	}
 }

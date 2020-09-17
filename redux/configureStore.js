@@ -25,7 +25,7 @@ export const ConfigureStore = () => {
 			leaders,
 			favorites
 		}),
-		applyMiddleware( thunk, logger )
+		applyMiddleware(thunk, logger)
 	);
 
 	const persistor = persistStore(store);
