@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, FlatList, Modal, Button, StyleSheet, TextInput, Alert, PanResponder } from 'react-native';
+import { View, Text, ScrollView, FlatList, Modal, Button, StyleSheet, TextInput, Alert, PanResponder, Share } from 'react-native';
 import { Card, Icon, Input, Rating } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
@@ -74,6 +74,16 @@ function RenderDish(props) {
 		}
 	});
 
+	function shareDish (title, message, url) {
+		Share.share({
+			title: title,
+			message: title + ': ' + message + ' ' + url,
+			url: url
+		}, {
+			dialogTitle: 'Share ' + title
+		});
+	}
+
 	if (dish != null) {
 		return(
 			<Animatable.View animation='fadeInDown' duration={2000} delay={1000} 
@@ -81,12 +91,12 @@ function RenderDish(props) {
 				<Card featuredTitle={dish.name} image={{uri: baseUrl + dish.image}} >
 					<Text style={{margin: 10}}> {dish.description} </Text>
 					<View style={styles.icons}>
-						<Icon style={{flex: 1}} raised reverse name={ props.favorite ? 'heart' : 'heart-o'} 
-							type='font-awesome' color='#f50' 
-							onPress={() => props.favorite ? console.log('Already favorite') : props.onPress()} />
-						<Icon style={{flex: 1}} raised reverse name={'pencil'} 
-							type='font-awesome' color='#512DA8' 
+						<Icon style={{flex: 1}} raised reverse name={ props.favorite ? 'heart' : 'heart-o'} type='font-awesome' 
+							color='#f50' onPress={() => props.favorite ? console.log('Already favorite') : props.onPress()} />
+						<Icon style={{flex: 1}} raised reverse name={'pencil'} type='font-awesome' color='#512DA8' 
 							onPress={() => props.newComment() } />
+						<Icon raised reverse name='share' type='font-awesome' color='#51D2A8' style={{flex: 1}}
+							onPress={() => shareDish(dish.name, dish.description, baseUrl + dish.image)} />
 					</View>
 				</Card>
 			</Animatable.View>
