@@ -29,7 +29,7 @@ const MenuNavigator = createAppContainer(createStackNavigator({
 	
 	Menu: { screen: Menu, 
 		navigationOptions: ({ navigation }) => ({
-			headerLeft: () => <Icon name='menu' size={24} color='white' onPress={() => navigation.toggleDrawer()} />
+			headerLeft: () => <View style={styles.icons}><Icon name='menu' size={24} color='white' onPress={() => navigation.toggleDrawer()} /></View>
 		}) },
 	Dishdetail: { screen: Dishdetail }
 }, {
@@ -57,7 +57,7 @@ const HomeNavigator = createAppContainer(createStackNavigator({
 		headerTitleStyle: {
 			color: '#fff'
 		},
-		headerLeft: () => <Icon name='menu' size={24} color='white' onPress={() => navigation.toggleDrawer()} />
+		headerLeft: () =><View style={styles.icons}><Icon name='menu' size={24} color='white' onPress={() => navigation.toggleDrawer()} /></View>
 	}) 
 }))
 
@@ -71,9 +71,9 @@ const ContactUsNavigator = createAppContainer(createStackNavigator({
 		},
 		headerTintColor: '#fff',
 		headerTitleStyle: {
-			color: '#512DA8'
+			color: '#fff'
 		},
-		headerLeft: () => <Icon name='menu' size={24} color='white' onPress={() => navigation.toggleDrawer()} />
+		headerLeft: () =><View style={styles.icons}><Icon name='menu' size={24} color='white' onPress={() => navigation.toggleDrawer()} /></View>
 	})
 }))
 
@@ -87,9 +87,9 @@ const AboutUsNavigator = createAppContainer(createStackNavigator({
 		},
 		headerTintColor: '#fff',
 		headerTitleStyle: {
-			color: '#512DA8'
+			color: '#fff'
 		},
-		headerLeft: () => <Icon name='menu' size={24} color='white' onPress={() => navigation.toggleDrawer()} />
+		headerLeft: () =><View style={styles.icons}><Icon name='menu' size={24} color='white' onPress={() => navigation.toggleDrawer()} /></View>
 	})
 }))
 
@@ -105,7 +105,7 @@ const ReservationNavigator = createAppContainer(createStackNavigator({
 		headerTitleStyle: {
 			color: '#fff'
 		},
-		headerLeft: () => <Icon name='menu' size={24} color='white' onPress={() => navigation.toggleDrawer()} />
+		headerLeft: () =><View style={styles.icons}><Icon name='menu' size={24} color='white' onPress={() => navigation.toggleDrawer()} /></View>
 	})
 }))
 
@@ -121,7 +121,7 @@ const FavoritesNavigator = createAppContainer(createStackNavigator({
 		headerTitleStyle: {
 			color: '#fff'
 		},
-		headerLeft: () => <Icon name='menu' size={24} color='white' onPress={() => navigation.toggleDrawer()} />
+		headerLeft: () =><View style={styles.icons}><Icon name='menu' size={24} color='white' onPress={() => navigation.toggleDrawer()} /></View>
 	})
 }))
 
@@ -137,7 +137,7 @@ const LoginNavigator = createAppContainer(createStackNavigator({
 		headerTitleStyle: {
 			color: '#fff'
 		},
-		headerLeft: () => <Icon name='menu' size={24} color='white' onPress={() => navigation.toggleDrawer()} />
+		headerLeft: () =><View style={styles.icons}><Icon name='menu' size={24} color='white' onPress={() => navigation.toggleDrawer()} /></View>
 	})
 }))
 
@@ -165,7 +165,7 @@ const MainNavigator = createAppContainer(createDrawerNavigator({
 			title: 'Login',
 			drawerLabel: 'Login',
 			drawerIcon: ({ tintColor }) => (
-				<Icon name='home' type='font-awesome' size={24} color={tintColor} />
+				<Icon name='sign-in' type='font-awesome' size={24} color={tintColor} />
 			)
 		}
 	},
@@ -305,7 +305,12 @@ const styles = StyleSheet.create({
 		margin: 22,
 		width: 68,
 		height: 50
-	}
+	},
+	icons: {
+    	flexDirection: 'row',
+        paddingLeft: 10,
+        paddingRight: 10
+    }
 })
 
 export default connect(null, mapDispatchToProps)(Main);

@@ -104,7 +104,7 @@ function RenderDish(props) {
 	}
 
 	else{
-		return(<View> </View>);
+		return(<View><Text> Error </Text></View>);
 	}
 }
 
